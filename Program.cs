@@ -1,5 +1,8 @@
+using Microsoft.EntityFrameworkCore;
+using PersonsApi.Data;
 using PersonsApi.Repositories;
 using PersonsApi.Services;
+using System;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +24,13 @@ builder.Services.AddScoped<ICompanyRepository, CompanyAdoNetRepository>();
 // Register EF implementation
 //builder.Services.AddScoped<IPersonRepository, PersonEFRepository>();
 //builder.Services.AddScoped<ICompanyRepository, CompanyEFRepository>();
+
+builder.Services.AddDbContext<Context>(options =>
+    options.UseMySql(
+        builder.Configuration.GetConnectionString("DefaultConnection"),
+        ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("DefaultConnection"))
+    ));
+
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
