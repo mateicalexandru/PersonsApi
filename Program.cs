@@ -11,12 +11,12 @@ builder.Services.AddScoped<IPersonService, PersonService>();
 builder.Services.AddScoped<ICompanyService, CompanyService>();
 
 // Register in-memory (default) implementation
-//builder.Services.AddScoped<IPersonRepository, PersonRepository>();
-//builder.Services.AddScoped<ICompanyRepository, CompanyRepository>();
+builder.Services.AddScoped<IPersonRepository, PersonRepository>();
+builder.Services.AddScoped<ICompanyRepository, CompanyRepository>();
 
 // Register ADO.NET implementation (uncomment to use ADO.NET)
-builder.Services.AddScoped<IPersonRepository, PersonAdoNetRepository>();
-builder.Services.AddScoped<ICompanyRepository, CompanyAdoNetRepository>();
+//builder.Services.AddScoped<IPersonRepository, PersonAdoNetRepository>();
+//builder.Services.AddScoped<ICompanyRepository, CompanyAdoNetRepository>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
